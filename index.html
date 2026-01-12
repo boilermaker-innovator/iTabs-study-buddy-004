@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Claude Prompting StudyBuddy | 10 Tips to Get Better AI Results</title>
+    
+    <!-- Meta Description -->
+    <meta name="description" content="10 prompting techniques from Anthropic to get way more out of Claude AI. Interactive study guide with video timestamps and examples.">
+    <meta name="keywords" content="Claude, AI prompting, Anthropic, ChatGPT, prompt engineering, AI tips, study guide">
+    <meta name="author" content="iTabs StudyBuddy">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://boilermaker-innovator.github.io/iTabs-study-buddy-004/claude-prompting-study-buddy.html">
+    <meta property="og:title" content="🧠 Claude Prompting StudyBuddy">
+    <meta property="og:description" content="10 prompting rules from Anthropic to get way more out of Claude. Watch the exact section for each tip.">
+    <meta property="og:image" content="https://img.youtube.com/vi/Xob-2a1OnvA/maxresdefault.jpg">
+    <meta property="og:site_name" content="iTabs StudyBuddy">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://boilermaker-innovator.github.io/iTabs-study-buddy-004/claude-prompting-study-buddy.html">
+    <meta name="twitter:title" content="🧠 Claude Prompting StudyBuddy">
+    <meta name="twitter:description" content="10 prompting rules from Anthropic to get way more out of Claude. Watch the exact section for each tip.">
+    <meta name="twitter:image" content="https://img.youtube.com/vi/Xob-2a1OnvA/maxresdefault.jpg">
+    <meta name="twitter:creator" content="@itaboratory">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>">
+    
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#1a1a2e">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            background: #1a1a2e;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: #1a1a2e;
+            background-image: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            min-height: -webkit-fill-available;
+            color: #fff;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 30px 0;
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #ff6b6b, #feca57);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        header p {
+            color: #a0a0a0;
+            font-size: 1rem;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            margin-bottom: 30px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .tips-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .tip-count {
+            background: linear-gradient(90deg, #ff6b6b, #feca57);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #1a1a2e;
+        }
+
+        .tips-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .tip-item {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 16px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tip-item:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: rgba(255,107,107,0.5);
+            transform: translateX(5px);
+        }
+
+        .tip-content {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .tip-number {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #ff6b6b, #feca57);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: #1a1a2e;
+            flex-shrink: 0;
+        }
+
+        .tip-title {
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .info-btn {
+            width: 36px;
+            height: 36px;
+            background: rgba(255,107,107,0.2);
+            border: 2px solid #ff6b6b;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1rem;
+            color: #ff6b6b;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .tip-item:hover .info-btn {
+            background: #ff6b6b;
+            color: #1a1a2e;
+        }
+
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .popup-overlay.active {
+            display: flex;
+        }
+
+        .popup {
+            background: #1e1e2e;
+            border-radius: 16px;
+            max-width: 500px;
+            width: 100%;
+            max-height: 85vh;
+            overflow-y: auto;
+            position: relative;
+            animation: popupIn 0.3s ease;
+        }
+
+        @keyframes popupIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9) translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .popup-header {
+            background: linear-gradient(135deg, #ff6b6b, #feca57);
+            padding: 20px;
+            border-radius: 16px 16px 0 0;
+            position: sticky;
+            top: 0;
+        }
+
+        .popup-header h3 {
+            color: #1a1a2e;
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .popup-header .tip-num {
+            color: rgba(0,0,0,0.5);
+            font-size: 0.85rem;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 32px;
+            height: 32px;
+            background: rgba(0,0,0,0.2);
+            border: none;
+            border-radius: 50%;
+            color: #1a1a2e;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+
+        .close-btn:hover {
+            background: rgba(0,0,0,0.3);
+        }
+
+        .popup-body {
+            padding: 20px;
+        }
+
+        .popup-section {
+            margin-bottom: 20px;
+        }
+
+        .popup-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .popup-section h4 {
+            color: #ff6b6b;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .popup-section p {
+            color: #d0d0d0;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .example-box {
+            background: rgba(0,0,0,0.3);
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 10px;
+        }
+
+        .example-bad {
+            border-left: 3px solid #ff6b6b;
+            margin-bottom: 10px;
+        }
+
+        .example-good {
+            border-left: 3px solid #4ade80;
+        }
+
+        .example-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+            color: #888;
+        }
+
+        .example-bad .example-label {
+            color: #ff6b6b;
+        }
+
+        .example-good .example-label {
+            color: #4ade80;
+        }
+
+        .example-text {
+            color: #e0e0e0;
+            font-style: italic;
+            font-size: 0.9rem;
+        }
+
+        .watch-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #ff6b6b, #feca57);
+            color: #1a1a2e;
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            border: none;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .watch-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(255,107,107,0.4);
+        }
+
+        .timestamp {
+            background: rgba(0,0,0,0.3);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+
+        .related-section {
+            margin-top: 40px;
+            padding: 20px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .related-section h3 {
+            font-size: 1rem;
+            color: #888;
+            margin-bottom: 15px;
+        }
+
+        .related-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(0, 217, 255, 0.1);
+            border: 1px solid rgba(0, 217, 255, 0.3);
+            color: #00d9ff;
+            text-decoration: none;
+            padding: 15px 25px;
+            border-radius: 10px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .related-link:hover {
+            background: rgba(0, 217, 255, 0.2);
+            border-color: #00d9ff;
+            transform: translateY(-2px);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #666;
+            font-size: 0.85rem;
+        }
+
+        footer a {
+            color: #ff6b6b;
+            text-decoration: none;
+        }
+
+        .credit {
+            margin-top: 10px;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🧠 Claude Prompting StudyBuddy</h1>
+            <p>10 techniques to get better results from Claude AI</p>
+        </header>
+
+        <div class="video-container">
+            <iframe 
+                id="ytPlayer"
+                src="https://www.youtube.com/embed/Xob-2a1OnvA?enablejsapi=1" 
+                title="10 Claude Prompting Tips"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+            </iframe>
+        </div>
+
+        <div class="tips-header">
+            <span class="tip-count">10 Tips</span>
+        </div>
+
+        <div class="tips-list">
+            <div class="tip-item" onclick="openPopup(0)">
+                <div class="tip-content">
+                    <span class="tip-number">1</span>
+                    <span class="tip-title">Tone of Collaboration</span>
+                </div>
+                <span class="info-btn">i</span>
+            </div>
+
+            <div class="tip-item" onclick="openPopup(1)">
+                <div class="tip-content">
+                    <span class="tip-number">2</span>
+                    <span class="tip-title">Be Explicit</span>
+                </div>
+                <span class="info-btn">i</span>
+            </div>
+
+            <div class="tip-item" onclick="openPopup(2)">
+                <div class="tip-content">
+                    <span class="tip-number">3</span>
+                    <span class="tip-title">Define the Boundaries</span>
+                </div>
+                <span class="info-btn">i</span>
+            </div>
+
+            <div class="tip-item" onclick="openPopup(3)">
+                <div class="tip-content">
+                    <span class="tip-number">4</span>
+                    <span class="tip-title">Draft, Plan, Then Act</span>
+                </div>
+                <span class="info-btn">i</span>
+            </div>
+
+            <div class="tip-item" onclick="openPopup(4)">
+                <div class="tip-content">
+                    <span class="tip-number">5</span>
+                    <span class="tip-title">Demand Structured Output</span>
+                </div>
+                <span class="info-btn">i</span>
+            </div>
+
+            <div class="tip-item" onclick="openPopup(5)">
+                <div class="tip-content">
+                    <span class="tip-number">6</span>
+                    <span class="tip-title">Explain the Why</span>
+                </div>
+                <span class="info-btn">i</span>
+            </div>
+
+            <div class="tip-item" onclick="openPopup(6)">
+                <div class="tip-content">
+                    <span class="tip-number">7</span>
+                    <span class="tip-title">Control Brevity vs Detail</span>
+                </div>
+                <span class="info-btn">i</span>
+            </div>
+
+            <div class="tip-item" onclick="openPopup(7)">
+                <div class="tip-content">
+                    <span class="tip-number">8</span>
+                    <span class="tip-title">Provide a Scaffold</span>
+                </div>
+                <span class="info-btn">i</span>
+            </div>
+
+            <div class="tip-item" onclick="openPopup(8)">
+                <div class="tip-content">
+                    <span class="tip-number">9</span>
+                    <span class="tip-title">Speak the Language</span>
+                </div>
+                <span class="info-btn">i</span>
+            </div>
+
+            <div class="tip-item" onclick="openPopup(9)">
+                <div class="tip-content">
+                    <span class="tip-number">10</span>
+                    <span class="tip-title">Divide and Conquer</span>
+                </div>
+                <span class="info-btn">i</span>
+            </div>
+        </div>
+
+        <div class="related-section">
+            <h3>📚 Continue Learning</h3>
+            <a href="ai-revolution-study-buddy.html" class="related-link">
+                🚀 What's Actually Happening with AI →
+            </a>
+        </div>
+
+        <footer>
+            <p>Built with 💡 by <a href="#">iTabs StudyBuddy</a></p>
+            <p class="credit">Video by Greg Isenberg</p>
+        </footer>
+    </div>
+
+    <div class="popup-overlay" id="popupOverlay" onclick="closePopup(event)">
+        <div class="popup" onclick="event.stopPropagation()">
+            <div class="popup-header">
+                <span class="tip-num" id="popupTipNum">Tip 1 of 10</span>
+                <h3 id="popupTitle">Title</h3>
+                <button class="close-btn" onclick="closePopup()">&times;</button>
+            </div>
+            <div class="popup-body" id="popupBody"></div>
+        </div>
+    </div>
+
+    <script>
+        var tips = [
+            {
+                title: "Tone of Collaboration",
+                timestamp: 56,
+                timeDisplay: "0:56",
+                explanation: "Treat Claude like a teammate, not a servant. A friendly, clear, and firm tone gets better results than being demanding or overly passive. Being mean leads to defensive, less helpful responses.",
+                badExample: "Fix this grammar NOW.",
+                goodExample: "Please review the following text for grammatical errors and suggest corrections. My goal is to make it sound more professional and confident."
+            },
+            {
+                title: "Be Explicit",
+                timestamp: 136,
+                timeDisplay: "2:16",
+                explanation: "State your request as a clear, action-oriented command with all necessary details. Use an action verb, specify quantity, and define your target audience. Vague requests get generic AI slop.",
+                badExample: "I need a bunch of blog post ideas.",
+                goodExample: "Generate 10 blog post titles about the impact of remote work on urban planning. The titles should be engaging for an audience of city officials and real estate developers."
+            },
+            {
+                title: "Define the Boundaries",
+                timestamp: 200,
+                timeDisplay: "3:20",
+                explanation: "A well-defined box produces more creative results than an empty field. Add constraints on length, style, character, setting, and even specific words to avoid. Infinite possibilities lead to cliche output.",
+                badExample: "Write a short story about a detective in the future.",
+                goodExample: "Write a short story, no more than 500 words, in the style of Raymond Chandler. The story must feature a robot detective investigating a data theft on Mars. Do not use the word cyber."
+            },
+            {
+                title: "Draft, Plan, Then Act",
+                timestamp: 266,
+                timeDisplay: "4:26",
+                explanation: "Do not try to get a perfect final product in one prompt. Ask for an outline first, refine it together, then execute. This lets you course-correct early and actually saves time in the long run.",
+                badExample: "Write me a report on the benefits of a 4-day work week.",
+                goodExample: "Step 1: First propose an outline for this report. Step 2: That is a good start. In section two, add a subpoint about employee retention. Step 3: Now write the full report based on this revised outline."
+            },
+            {
+                title: "Demand Structured Output",
+                timestamp: 399,
+                timeDisplay: "6:39",
+                explanation: "Claude can output in many formats beyond plain paragraphs. Request markdown tables, bullet points, JSON, or any specific structure you need. Structured output is easier to use and parse.",
+                badExample: "List Apollo missions and some facts about them.",
+                goodExample: "Provide a list of the last three Apollo missions (15, 16, and 17). For each mission, include: launch date, crew members, and a key achievement. Present this in a markdown formatted table."
+            },
+            {
+                title: "Explain the Why",
+                timestamp: 480,
+                timeDisplay: "8:00",
+                explanation: "Telling Claude WHY you need something helps it understand your true intent. Include your brand values, target audience, and unique selling proposition. Context creates relevance.",
+                badExample: "Give me five marketing slogans for a new brand of coffee.",
+                goodExample: "Give me five marketing slogans for a new brand of coffee. Our beans are ethically sourced from small independent farms. Our target audience is environmentally conscious millennials. The slogans should reflect quality and sustainability."
+            },
+            {
+                title: "Control Brevity vs Detail",
+                timestamp: 545,
+                timeDisplay: "9:05",
+                explanation: "You control the output length. Use phrases like be concise, use bullet points, explain like I am 5, or think step by step for a college student. Match the detail level to your actual needs.",
+                badExample: "Explain photosynthesis.",
+                goodExample: "Expert version: Explain photosynthesis in detail for a college biology student. Think step by step. OR Brief version: Explain photosynthesis. Be concise and use bullet points. OR Simple: Explain photosynthesis like I am 5."
+            },
+            {
+                title: "Provide a Scaffold",
+                timestamp: 621,
+                timeDisplay: "10:21",
+                explanation: "Give Claude a template or example to guide its structure and style. This ensures the output is formatted exactly as you need it, not just accurate but usable.",
+                badExample: "Summarize this article.",
+                goodExample: "Summarize the following article using this format: Main thesis: [one sentence]. Key supporting points: [three bullet points]. Concluding insight: [one sentence]. Then paste your text."
+            },
+            {
+                title: "Speak the Language",
+                timestamp: 681,
+                timeDisplay: "11:21",
+                explanation: "Using advanced prompting terms triggers sophisticated modes. These are cheat codes that Anthropic recommends: Think step by step for complex problems, Critique your own response for self-correction, Adopt the persona of an expert in [field] for domain-specific depth.",
+                badExample: "Help me with this math problem.",
+                goodExample: "Think step by step to solve this problem. After your answer, critique your own response and check for errors."
+            },
+            {
+                title: "Divide and Conquer",
+                timestamp: 748,
+                timeDisplay: "12:28",
+                explanation: "For complex tasks, act as the conductor. Do not ask for a 10-page report in one prompt. Break it into logical subtasks: blueprint first, then section by section, then synthesize and check for consistency.",
+                badExample: "Build me a business plan for a coffee shop.",
+                goodExample: "Step 1: Create a detailed table of contents for a business plan for a specialty coffee shop. Step 2: Write the executive summary. Step 3: Write the market analysis. Final step: Review the complete plan and ensure consistent tone."
+            }
+        ];
+
+        function openPopup(index) {
+            var tip = tips[index];
+            document.getElementById('popupTipNum').textContent = 'Tip ' + (index + 1) + ' of 10';
+            document.getElementById('popupTitle').textContent = tip.title;
+            
+            var html = '<div class="popup-section">' +
+                '<h4>💡 What It Means</h4>' +
+                '<p>' + tip.explanation + '</p>' +
+                '</div>' +
+                '<div class="popup-section">' +
+                '<h4>📝 Example</h4>' +
+                '<div class="example-box example-bad">' +
+                '<div class="example-label">❌ Vague Request</div>' +
+                '<div class="example-text">"' + tip.badExample + '"</div>' +
+                '</div>' +
+                '<div class="example-box example-good">' +
+                '<div class="example-label">✅ Architected Brief</div>' +
+                '<div class="example-text">"' + tip.goodExample + '"</div>' +
+                '</div>' +
+                '</div>' +
+                '<div class="popup-section">' +
+                '<h4>🎬 Watch This Section</h4>' +
+                '<button class="watch-btn" onclick="jumpToTime(' + tip.timestamp + ')">' +
+                '▶ Watch in video <span class="timestamp">' + tip.timeDisplay + '</span>' +
+                '</button>' +
+                '</div>';
+            
+            document.getElementById('popupBody').innerHTML = html;
+            document.getElementById('popupOverlay').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closePopup(event) {
+            if (!event || event.target === document.getElementById('popupOverlay')) {
+                document.getElementById('popupOverlay').classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+
+        function jumpToTime(seconds) {
+            closePopup();
+            var iframe = document.getElementById('ytPlayer');
+            iframe.src = 'https://www.youtube.com/embed/Xob-2a1OnvA?enablejsapi=1&start=' + seconds + '&autoplay=1';
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closePopup();
+        });
+    </script>
+</body>
+</html>
