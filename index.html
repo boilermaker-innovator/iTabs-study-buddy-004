@@ -4,108 +4,624 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Support Willie Through His Health and Hardship - iTabs</title>
+    <title>AI Revolution StudyBuddy</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #5ddb9a 0%, #3ec97a 100%);
-            min-height: 100vh;
-            padding: 20px;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-    </style>
+
+```
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+        background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 50%, #16213e 100%);
+        min-height: 100vh;
+        color: #fff;
+    }
+
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    header {
+        text-align: center;
+        padding: 30px 0;
+    }
+
+    header h1 {
+        font-size: 1.8rem;
+        margin-bottom: 10px;
+        background: linear-gradient(90deg, #00d9ff, #00ff88);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    header p {
+        color: #a0a0a0;
+        font-size: 1rem;
+    }
+
+    .video-container {
+        position: relative;
+        width: 100%;
+        padding-bottom: 56.25%;
+        margin-bottom: 30px;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 10px 40px rgba(0, 217, 255, 0.2);
+    }
+
+    .video-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
+
+    .tips-header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+
+    .tips-header h2 {
+        font-size: 1.3rem;
+        color: #fff;
+    }
+
+    .tip-count {
+        background: linear-gradient(90deg, #00d9ff, #00ff88);
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: #0f0f1a;
+    }
+
+    .tips-list {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .tip-item {
+        background: rgba(255,255,255,0.05);
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 12px;
+        padding: 16px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .tip-item:hover {
+        background: rgba(255,255,255,0.1);
+        border-color: rgba(0, 217, 255, 0.5);
+        transform: translateX(5px);
+    }
+
+    .tip-content {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .tip-number {
+        width: 32px;
+        height: 32px;
+        background: linear-gradient(135deg, #00d9ff, #00ff88);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 0.9rem;
+        color: #0f0f1a;
+        flex-shrink: 0;
+    }
+
+    .tip-title {
+        font-size: 1rem;
+        font-weight: 500;
+    }
+
+    .info-btn {
+        width: 36px;
+        height: 36px;
+        background: rgba(0, 217, 255, 0.2);
+        border: 2px solid #00d9ff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 1rem;
+        color: #00d9ff;
+        transition: all 0.3s ease;
+        flex-shrink: 0;
+    }
+
+    .tip-item:hover .info-btn {
+        background: #00d9ff;
+        color: #0f0f1a;
+    }
+
+    /* Popup Overlay */
+    .popup-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.9);
+        z-index: 1000;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+    }
+
+    .popup-overlay.active {
+        display: flex;
+    }
+
+    .popup {
+        background: #1e1e2e;
+        border-radius: 16px;
+        max-width: 500px;
+        width: 100%;
+        max-height: 85vh;
+        overflow-y: auto;
+        position: relative;
+        animation: popupIn 0.3s ease;
+    }
+
+    @keyframes popupIn {
+        from {
+            opacity: 0;
+            transform: scale(0.9) translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+    }
+
+    .popup-header {
+        background: linear-gradient(135deg, #00d9ff, #00ff88);
+        padding: 20px;
+        border-radius: 16px 16px 0 0;
+        position: sticky;
+        top: 0;
+    }
+
+    .popup-header h3 {
+        color: #0f0f1a;
+        font-size: 1.2rem;
+        margin-bottom: 5px;
+    }
+
+    .popup-header .tip-num {
+        color: rgba(0,0,0,0.5);
+        font-size: 0.85rem;
+    }
+
+    .close-btn {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        width: 32px;
+        height: 32px;
+        background: rgba(0,0,0,0.2);
+        border: none;
+        border-radius: 50%;
+        color: #0f0f1a;
+        font-size: 1.5rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.3s;
+    }
+
+    .close-btn:hover {
+        background: rgba(0,0,0,0.3);
+    }
+
+    .popup-body {
+        padding: 20px;
+    }
+
+    .popup-section {
+        margin-bottom: 20px;
+    }
+
+    .popup-section:last-child {
+        margin-bottom: 0;
+    }
+
+    .popup-section h4 {
+        color: #00d9ff;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 10px;
+    }
+
+    .popup-section p {
+        color: #d0d0d0;
+        line-height: 1.6;
+        font-size: 0.95rem;
+    }
+
+    .highlight-box {
+        background: rgba(0, 217, 255, 0.1);
+        border-left: 3px solid #00d9ff;
+        border-radius: 8px;
+        padding: 15px;
+        margin-top: 10px;
+    }
+
+    .highlight-box.green {
+        background: rgba(0, 255, 136, 0.1);
+        border-left-color: #00ff88;
+    }
+
+    .highlight-label {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 5px;
+        color: #00d9ff;
+    }
+
+    .highlight-box.green .highlight-label {
+        color: #00ff88;
+    }
+
+    .highlight-text {
+        color: #e0e0e0;
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+
+    .link-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: linear-gradient(135deg, #00d9ff, #00ff88);
+        color: #0f0f1a;
+        text-decoration: none;
+        padding: 12px 20px;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        margin-top: 10px;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .link-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 20px rgba(0, 217, 255, 0.4);
+    }
+
+    .related-section {
+        margin-top: 40px;
+        padding: 20px;
+        background: rgba(255,255,255,0.03);
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 12px;
+        text-align: center;
+    }
+
+    .related-section h3 {
+        font-size: 1rem;
+        color: #888;
+        margin-bottom: 15px;
+    }
+
+    .related-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: rgba(255, 107, 107, 0.1);
+        border: 1px solid rgba(255, 107, 107, 0.3);
+        color: #ff6b6b;
+        text-decoration: none;
+        padding: 15px 25px;
+        border-radius: 10px;
+        font-weight: 500;
+        transition: all 0.3s;
+    }
+
+    .related-link:hover {
+        background: rgba(255, 107, 107, 0.2);
+        border-color: #ff6b6b;
+        transform: translateY(-2px);
+    }
+
+    footer {
+        text-align: center;
+        padding: 40px 20px;
+        color: #666;
+        font-size: 0.85rem;
+    }
+
+    footer a {
+        color: #00d9ff;
+        text-decoration: none;
+    }
+
+    .credit {
+        margin-top: 10px;
+        font-size: 0.8rem;
+    }
+</style>
+```
+
 </head>
 <body>
+    <div class="container">
+        <header>
+            <h1>🚀 AI Revolution StudyBuddy</h1>
+            <p>What's actually happening with AI right now (Jan 2026)</p>
+        </header>
 
-<!-- iTabs Card -->
+```
+    <div class="video-container">
+        <iframe 
+            src="https://www.youtube.com/embed/N8I2wYXt4m8" 
+            title="AI Revolution - Wes Roth"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+        </iframe>
+    </div>
 
-<div style="background:white;border-radius:20px;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,0.2);max-width:480px;margin:20px auto;">
-    <div style="position:relative;width:100%;height:320px;overflow:hidden;background:linear-gradient(135deg,#00b964,#00a857);">
-        <div id="itabsTrack" style="display:flex;height:100%;transition:transform 0.4s ease;">
-            <div style="min-width:100%;height:100%;position:relative;">
-                <img src="https://i.ibb.co/KzLKST9Q/IMG-4749.png" alt="Support Willie Through His Health and Hardship 1" style="width:100%;height:100%;object-fit:cover;">
+    <div class="tips-header">
+        <h2>Key Takeaways</h2>
+        <span class="tip-count">9 Concepts</span>
+    </div>
+
+    <div class="tips-list">
+        <div class="tip-item" onclick="openPopup(0)">
+            <div class="tip-content">
+                <span class="tip-number">1</span>
+                <span class="tip-title">Crossing the Einstein Line</span>
             </div>
+            <span class="info-btn">i</span>
         </div>
-        <div style="position:absolute;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:15;">
-            <div class="itabs-dot" style="width:10px;height:10px;border-radius:50%;background:white;cursor:pointer;border:2px solid white;"></div>
+
+        <div class="tip-item" onclick="openPopup(1)">
+            <div class="tip-content">
+                <span class="tip-number">2</span>
+                <span class="tip-title">The Erdős Problems</span>
+            </div>
+            <span class="info-btn">i</span>
         </div>
-        <div id="itabsCounter" style="position:absolute;bottom:14px;right:14px;background:rgba(0,0,0,0.5);color:white;padding:4px 10px;border-radius:12px;font-size:12px;font-weight:600;">1/1</div>
-        <div onclick="document.getElementById('itabsPopup').style.display='flex'" style="position:absolute;top:14px;right:14px;width:44px;height:44px;background:rgba(255,255,255,0.95);color:#00b964;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:22px;cursor:pointer;box-shadow:0 4px 15px rgba(0,0,0,0.2);border:3px solid white;z-index:20;">i</div>
+
+        <div class="tip-item" onclick="openPopup(2)">
+            <div class="tip-content">
+                <span class="tip-number">3</span>
+                <span class="tip-title">Terence Tao Confirmed It</span>
+            </div>
+            <span class="info-btn">i</span>
+        </div>
+
+        <div class="tip-item" onclick="openPopup(3)">
+            <div class="tip-content">
+                <span class="tip-number">4</span>
+                <span class="tip-title">GPT 5.2 Pro is the Breakthrough</span>
+            </div>
+            <span class="info-btn">i</span>
+        </div>
+
+        <div class="tip-item" onclick="openPopup(4)">
+            <div class="tip-content">
+                <span class="tip-number">5</span>
+                <span class="tip-title">This Didn't Exist 3 Months Ago</span>
+            </div>
+            <span class="info-btn">i</span>
+        </div>
+
+        <div class="tip-item" onclick="openPopup(5)">
+            <div class="tip-content">
+                <span class="tip-number">6</span>
+                <span class="tip-title">AI Can Be Cloned Infinitely</span>
+            </div>
+            <span class="info-btn">i</span>
+        </div>
+
+        <div class="tip-item" onclick="openPopup(6)">
+            <div class="tip-content">
+                <span class="tip-number">7</span>
+                <span class="tip-title">The "Quants" Changed Everything</span>
+            </div>
+            <span class="info-btn">i</span>
+        </div>
+
+        <div class="tip-item" onclick="openPopup(7)">
+            <div class="tip-content">
+                <span class="tip-number">8</span>
+                <span class="tip-title">Every Industry Gets Disrupted</span>
+            </div>
+            <span class="info-btn">i</span>
+        </div>
+
+        <div class="tip-item" onclick="openPopup(8)">
+            <div class="tip-content">
+                <span class="tip-number">9</span>
+                <span class="tip-title">We're at the Inflection Point</span>
+            </div>
+            <span class="info-btn">i</span>
+        </div>
     </div>
-    <div style="padding:20px;text-align:center;">
-        <h3 style="font-size:1.2em;color:#1a1a2e;margin:0 0 6px 0;">Support Willie Through His Health and Hardship</h3>
-        <p style="color:#718096;font-size:0.9em;margin:0;">Tap i for full story</p>
+
+    <div class="related-section">
+        <h3>📚 Continue Learning</h3>
+        <a href="claude-prompting-study-buddy.html" class="related-link">
+            🧠 Learn How to Use Claude Better →
+        </a>
     </div>
+
+    <footer>
+        <p>Built with 💡 by <a href="#">iTabs StudyBuddy</a></p>
+        <p class="credit">Video by Wes Roth</p>
+    </footer>
 </div>
 
-<!-- Info Popup -->
-
-<div id="itabsPopup" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.8);z-index:1000;align-items:center;justify-content:center;padding:15px;">
-    <div style="background:white;border-radius:20px;max-width:450px;width:90%;max-height:85vh;overflow:hidden;display:flex;flex-direction:column;">
-        <div style="background:linear-gradient(135deg,#00b964,#00a857);color:white;padding:24px;position:relative;flex-shrink:0;">
-            <h3 style="font-size:1.3em;margin:0 0 4px 0;">Support Willie Through His Health and Hardship</h3>
-            <p style="opacity:0.9;font-size:0.9em;margin:0;">The Full Story</p>
-            <button onclick="document.getElementById('itabsPopup').style.display='none'" style="position:absolute;top:12px;right:12px;width:32px;height:32px;background:rgba(255,255,255,0.2);border:none;border-radius:50%;color:white;font-size:20px;cursor:pointer;">×</button>
+<!-- Popup Overlay -->
+<div class="popup-overlay" id="popupOverlay" onclick="closePopup(event)">
+    <div class="popup" onclick="event.stopPropagation()">
+        <div class="popup-header">
+            <span class="tip-num" id="popupTipNum">Concept 1 of 9</span>
+            <h3 id="popupTitle">Title</h3>
+            <button class="close-btn" onclick="closePopup()">&times;</button>
         </div>
-        <div style="padding:24px;overflow-y:auto;flex:1;">
-            <div style="margin-bottom:16px;"><h4 style="color:#00b964;font-size:1em;margin-bottom:6px;">🚨 The Crisis</h4><p style="color:#4a5568;line-height:1.6;font-size:0.95em;">My name is Willie, and I'm 58 years old. I lost my job on April 30, 2025, due to budget cuts after having special permission to work from home because of my Symptomatic chronic systolic heart failure and Trigeminal Neuralgia. I filed for disability benefits on May 14, but it's been months with no decision.</p></div>
-            <div style="margin-bottom:16px;"><h4 style="color:#00b964;font-size:1em;margin-bottom:6px;">💔 Why We Need Help</h4><p style="color:#4a5568;line-height:1.6;font-size:0.95em;">I'm writing this because I need help to stay in my apartment. Because of my medical conditions, I can't travel far enough to find work, making temp jobs and retail impossible. My world is now confined to my apartment and the growing stack of bills.</p></div>
-            <div style="margin-bottom:16px;"><h4 style="color:#00b964;font-size:1em;margin-bottom:6px;">💰 Where Money Goes</h4><p style="color:#4a5568;line-height:1.6;font-size:0.95em;">I need enough money to cover rent and the barest utilities until the SSA makes a decision on my disability claim. Sharing a few dollars, or even just this story, might keep the lights on for one more month.</p></div>
-            <div style="margin-bottom:16px;"><h4 style="color:#00b964;font-size:1em;margin-bottom:6px;">✅ Why Trust This</h4><p style="color:#4a5568;line-height:1.6;font-size:0.95em;">I'm not writing this for pity. I need help to stay in the apartment that has been my home, my office, my safe harbor, until SSA finally decides whether the rest of my life will be livable.</p></div>
-        </div>
-        <!-- FIXED DONATE BUTTON IN POPUP -->
-        <div style="padding:16px 24px;border-top:1px solid #e2e8f0;background:white;flex-shrink:0;">
-            <a href="https://www.gofundme.com/f/support-willie-through-his-health-and-hardship" target="_blank" style="display:block;width:100%;padding:16px;background:linear-gradient(135deg,#00b964,#00a857);color:white;text-align:center;text-decoration:none;border-radius:12px;font-weight:600;font-size:1.05em;box-shadow:0 4px 15px rgba(0,185,100,0.3);">💚 Donate Now</a>
-        </div>
-    </div>
-</div>
-
-<!-- iTabs Branding Button -->
-
-<div onclick="document.getElementById('itabsInfoPopup').style.display='flex'" style="position:fixed;bottom:75px;right:18px;width:38px;height:38px;background:white;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 3px 12px rgba(0,0,0,0.15);border:2px solid #00b964;cursor:pointer;z-index:999;">
-    <div style="color:#00b964;font-size:14px;font-weight:bold;line-height:1;">i</div>
-    <div style="color:#00b964;font-size:6px;font-weight:600;text-transform:uppercase;">iTabs</div>
-</div>
-
-<!-- iTabs Info Popup -->
-
-<div id="itabsInfoPopup" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.8);z-index:1001;align-items:center;justify-content:center;padding:15px;">
-    <div style="background:white;border-radius:20px;max-width:380px;width:90%;overflow:hidden;">
-        <div style="background:linear-gradient(135deg,#00b964,#00a857);color:white;padding:20px;position:relative;">
-            <h3 style="font-size:1.2em;margin:0;">💚 Made with iTabs</h3>
-            <button onclick="document.getElementById('itabsInfoPopup').style.display='none'" style="position:absolute;top:10px;right:10px;width:28px;height:28px;background:rgba(255,255,255,0.2);border:none;border-radius:50%;color:white;font-size:16px;cursor:pointer;">×</button>
-        </div>
-        <div style="padding:22px;">
-            <p style="color:#4a5568;line-height:1.7;margin:0 0 18px 0;">This visual story was created with iTabs - making fundraising campaigns impossible to ignore.</p>
-            <a href="https://itabs.ai/gofundme" target="_blank" style="display:block;width:100%;padding:14px;background:linear-gradient(135deg,#00b964,#00a857);color:white;text-align:center;text-decoration:none;border-radius:10px;font-weight:600;box-sizing:border-box;">Create Your Own iTabs →</a>
+        <div class="popup-body" id="popupBody">
+            <!-- Content injected by JS -->
         </div>
     </div>
 </div>
 
 <script>
-(function(){
-    var c=0,t=1;
-    function u(){
-        var tr=document.getElementById("itabsTrack"),ct=document.getElementById("itabsCounter"),ds=document.querySelectorAll(".itabs-dot");
-        if(tr)tr.style.transform="translateX(-"+(c*100)+"%)";
-        if(ct)ct.textContent=(c+1)+"/"+t;
-        ds.forEach(function(d,i){d.style.background=i===c?"white":"rgba(255,255,255,0.5)";});
+    const concepts = [
+        {
+            title: "Crossing the Einstein Line",
+            explanation: "AI capability is moving from 'average human' intelligence toward 'genius-level' intelligence. We're witnessing the transition from AI being 'cute' and 'adorable' to genuinely surprising and powerful. The graph shows AI crossing the line where Einstein sits.",
+            keyPoint: "We're currently watching AI's ability cross from 'that's cute' to 'WTF' territory.",
+            realWorld: "This isn't hype - it's verified by the world's top mathematicians who are seeing AI solve problems they couldn't.",
+            link: "https://mathstodon.xyz/@tao",
+            linkText: "Terence Tao's Mastodon"
+        },
+        {
+            title: "The Erdős Problems",
+            explanation: "Paul Erdős was a legendary mathematician who created a collection of unsolved problems - 1,135 of them. He described these as 'acorns from which mighty oaks can develop.' These are genuinely hard problems that the world's best mathematicians haven't cracked for decades.",
+            keyPoint: "About 40% have been solved by humans over many years. AI just started solving more in the last few DAYS.",
+            realWorld: "Problem #728 and #397 were both solved by AI in January 2026. These had stumped humans for 50+ years.",
+            link: "https://github.com/teorth/erdos",
+            linkText: "Erdős Problems Tracker"
+        },
+        {
+            title: "Terence Tao Confirmed It",
+            explanation: "Terence Tao is considered the 'Mozart of mathematics' - possibly the greatest living mathematician. He was teaching kids to count at age 2, taking university math at 9, and won the International Mathematical Olympiad gold medal at 13 (still the youngest ever). When he says something is legit, it's legit.",
+            keyPoint: "Tao confirmed AI solved Erdős problem #728 'more or less autonomously' with genuine new methods - not copied from existing solutions.",
+            realWorld: "This isn't some random claim. The most credible person in mathematics is saying this is real.",
+            link: "https://mathstodon.xyz/@tao",
+            linkText: "Read Tao's Full Post"
+        },
+        {
+            title: "GPT 5.2 Pro is the Breakthrough",
+            explanation: "OpenAI's GPT 5.2 Pro (released December 11, 2025) is the specific model driving most of these mathematical breakthroughs. It's the first model capable of making real dents in unsolved math problems.",
+            keyPoint: "Most solutions on Terence Tao's tracker came from GPT 5.2 Pro specifically - not Claude, not Gemini, not older GPT versions.",
+            realWorld: "Neil Somi (quantitative researcher at Citadel) used GPT 5.2 Pro to solve problem #397 over a weekend. It was accepted by Terence Tao.",
+            link: "https://openai.com",
+            linkText: "OpenAI"
+        },
+        {
+            title: "This Didn't Exist 3 Months Ago",
+            explanation: "Looking at the dates on Terence Tao's GitHub tracker, almost all AI-generated solutions are from late November 2025, December 2025, or January 2026. This capability is brand new.",
+            keyPoint: "We went from 'AI solving math problems? That's crazy talk' to 'Of course AI solves math problems' in just weeks.",
+            realWorld: "Just a few weeks ago, someone claiming an LLM solved a major math problem was accused of 'LLM psychosis.' Now it's confirmed fact.",
+            link: "https://github.com/teorth/erdos",
+            linkText: "See the Timeline"
+        },
+        {
+            title: "AI Can Be Cloned Infinitely",
+            explanation: "Even if AI is only EQUAL to the world's best mathematicians (not better), there's a crucial difference: you can run a million copies of AI simultaneously. It works 24/7 without fatigue. It can read every paper ever written. You can't Ctrl+V a human genius.",
+            keyPoint: "One breakthrough model = unlimited copies running forever, reading everything, never sleeping.",
+            realWorld: "GPT 5.2 Pro is one model. Make a million copies. Run them all. That's more math capability than all human mathematicians combined.",
+            link: null,
+            linkText: null
+        },
+        {
+            title: "The 'Quants' Changed Everything",
+            explanation: "Before the 1970s, trading was gut feeling and intuition. Then 'quants' (quantitative analysts) brought math and algorithms. They completely transformed finance. The same happened to logistics (optimal delivery routes), agriculture (precision farming), politics (campaign optimization), dating (algorithms), and advertising (split testing).",
+            keyPoint: "When math enters an industry, that industry gets disrupted. The people with math win. The people without it lose.",
+            realWorld: "Delivery companies discovered you should never turn left (if driving on right side). That came from math, not human intuition.",
+            link: null,
+            linkText: null
+        },
+        {
+            title: "Every Industry Gets Disrupted",
+            explanation: "If AI can do math at genius level, it will 'quant' every remaining industry. Medicine: personalized treatments based on your unique genome and bloodwork. Legal: finding high-reward, low-risk lawsuits automatically. Infrastructure: optimizing every design of every component.",
+            keyPoint: "What if every single thing humans design could be 10-15% better? Every mask, steering wheel, building, energy grid?",
+            realWorld: "We don't have enough human brainpower to deeply optimize every tiny design decision. AI might make that cheap and fast.",
+            link: null,
+            linkText: null
+        },
+        {
+            title: "We're at the Inflection Point",
+            explanation: "The graph shows AI capability shooting upward, crossing from below-human to above-human intelligence in specific domains. We're not waiting for this to happen - it's happening right now, in the last few months of 2025 and early 2026.",
+            keyPoint: "Don't sleep on this. This is the moment the curve goes vertical.",
+            realWorld: "You have access to these same AI tools. The question is whether you learn to use them before or after everyone else does.",
+            link: "https://claude.ai",
+            linkText: "Try Claude AI"
+        }
+    ];
+
+    function openPopup(index) {
+        const concept = concepts[index];
+        document.getElementById('popupTipNum').textContent = `Concept ${index + 1} of 9`;
+        document.getElementById('popupTitle').textContent = concept.title;
+        
+        let linkHtml = '';
+        if (concept.link) {
+            linkHtml = `
+                <div class="popup-section">
+                    <h4>🔗 Learn More</h4>
+                    <a href="${concept.link}" target="_blank" class="link-btn">
+                        ${concept.linkText} →
+                    </a>
+                </div>
+            `;
+        }
+        
+        document.getElementById('popupBody').innerHTML = `
+            <div class="popup-section">
+                <h4>💡 What's Happening</h4>
+                <p>${concept.explanation}</p>
+            </div>
+            <div class="popup-section">
+                <h4>🎯 Key Point</h4>
+                <div class="highlight-box">
+                    <div class="highlight-text">${concept.keyPoint}</div>
+                </div>
+            </div>
+            <div class="popup-section">
+                <h4>🌍 Real World</h4>
+                <div class="highlight-box green">
+                    <div class="highlight-text">${concept.realWorld}</div>
+                </div>
+            </div>
+            ${linkHtml}
+        `;
+        
+        document.getElementById('popupOverlay').classList.add('active');
+        document.body.style.overflow = 'hidden';
     }
-    var tr=document.getElementById("itabsTrack"),sx=0;
-    if(tr){
-        tr.addEventListener("touchstart",function(e){sx=e.changedTouches[0].screenX;});
-        tr.addEventListener("touchend",function(e){
-            var d=sx-e.changedTouches[0].screenX;
-            if(Math.abs(d)>50){c=d>0?(c+1)%t:(c-1+t)%t;u();}
-        });
+
+    function closePopup(event) {
+        if (!event || event.target === document.getElementById('popupOverlay')) {
+            document.getElementById('popupOverlay').classList.remove('active');
+            document.body.style.overflow = '';
+        }
     }
-    document.querySelectorAll(".itabs-dot").forEach(function(d,i){d.addEventListener("click",function(){c=i;u();});});
-    ["itabsPopup","itabsInfoPopup"].forEach(function(id){
-        var el=document.getElementById(id);
-        if(el)el.addEventListener("click",function(e){if(e.target.id===id)el.style.display="none";});
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closePopup();
     });
-})();
 </script>
+```
 
 </body>
 </html>
