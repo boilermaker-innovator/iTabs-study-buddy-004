@@ -3,8 +3,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>AI Revolution StudyBuddy</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude Prompting StudyBuddy</title>
     <style>
         * {
             margin: 0;
@@ -13,17 +13,10 @@
         }
 
 ```
-    html {
-        background: #0f0f1a;
-    }
-
     body {
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-        background: #0f0f1a;
-        background-image: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 50%, #16213e 100%);
-        background-attachment: fixed;
+        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
         min-height: 100vh;
-        min-height: -webkit-fill-available;
         color: #fff;
     }
 
@@ -31,7 +24,6 @@
         max-width: 800px;
         margin: 0 auto;
         padding: 20px;
-        background: transparent;
     }
 
     header {
@@ -42,7 +34,7 @@
     header h1 {
         font-size: 1.8rem;
         margin-bottom: 10px;
-        background: linear-gradient(90deg, #00d9ff, #00ff88);
+        background: linear-gradient(90deg, #ff6b6b, #feca57);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
@@ -60,7 +52,7 @@
         margin-bottom: 30px;
         border-radius: 12px;
         overflow: hidden;
-        box-shadow: 0 10px 40px rgba(0, 217, 255, 0.2);
+        box-shadow: 0 10px 40px rgba(0,0,0,0.4);
     }
 
     .video-container iframe {
@@ -75,18 +67,22 @@
     .tips-header {
         display: flex;
         align-items: center;
-        justify-content: center;
         gap: 10px;
         margin-bottom: 20px;
     }
 
+    .tips-header h2 {
+        font-size: 1.3rem;
+        color: #fff;
+    }
+
     .tip-count {
-        background: linear-gradient(90deg, #00d9ff, #00ff88);
+        background: linear-gradient(90deg, #ff6b6b, #feca57);
         padding: 4px 12px;
         border-radius: 20px;
         font-size: 0.85rem;
         font-weight: 600;
-        color: #0f0f1a;
+        color: #1a1a2e;
     }
 
     .tips-list {
@@ -109,7 +105,7 @@
 
     .tip-item:hover {
         background: rgba(255,255,255,0.1);
-        border-color: rgba(0, 217, 255, 0.5);
+        border-color: rgba(255,107,107,0.5);
         transform: translateX(5px);
     }
 
@@ -122,14 +118,14 @@
     .tip-number {
         width: 32px;
         height: 32px;
-        background: linear-gradient(135deg, #00d9ff, #00ff88);
+        background: linear-gradient(135deg, #ff6b6b, #feca57);
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
         font-weight: 700;
         font-size: 0.9rem;
-        color: #0f0f1a;
+        color: #1a1a2e;
         flex-shrink: 0;
     }
 
@@ -141,24 +137,25 @@
     .info-btn {
         width: 36px;
         height: 36px;
-        background: rgba(0, 217, 255, 0.2);
-        border: 2px solid #00d9ff;
+        background: rgba(255,107,107,0.2);
+        border: 2px solid #ff6b6b;
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
         font-weight: 700;
         font-size: 1rem;
-        color: #00d9ff;
+        color: #ff6b6b;
         transition: all 0.3s ease;
         flex-shrink: 0;
     }
 
     .tip-item:hover .info-btn {
-        background: #00d9ff;
-        color: #0f0f1a;
+        background: #ff6b6b;
+        color: #1a1a2e;
     }
 
+    /* Popup Overlay */
     .popup-overlay {
         display: none;
         position: fixed;
@@ -166,7 +163,7 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(0,0,0,0.9);
+        background: rgba(0,0,0,0.85);
         z-index: 1000;
         justify-content: center;
         align-items: center;
@@ -200,7 +197,7 @@
     }
 
     .popup-header {
-        background: linear-gradient(135deg, #00d9ff, #00ff88);
+        background: linear-gradient(135deg, #ff6b6b, #feca57);
         padding: 20px;
         border-radius: 16px 16px 0 0;
         position: sticky;
@@ -208,7 +205,7 @@
     }
 
     .popup-header h3 {
-        color: #0f0f1a;
+        color: #1a1a2e;
         font-size: 1.2rem;
         margin-bottom: 5px;
     }
@@ -227,7 +224,7 @@
         background: rgba(0,0,0,0.2);
         border: none;
         border-radius: 50%;
-        color: #0f0f1a;
+        color: #1a1a2e;
         font-size: 1.5rem;
         cursor: pointer;
         display: flex;
@@ -253,7 +250,7 @@
     }
 
     .popup-section h4 {
-        color: #00d9ff;
+        color: #ff6b6b;
         font-size: 0.9rem;
         text-transform: uppercase;
         letter-spacing: 1px;
@@ -266,31 +263,50 @@
         font-size: 0.95rem;
     }
 
-    .highlight-box {
-        background: rgba(0, 217, 255, 0.1);
-        border-left: 3px solid #00d9ff;
+    .example-box {
+        background: rgba(0,0,0,0.3);
         border-radius: 8px;
         padding: 15px;
         margin-top: 10px;
     }
 
-    .highlight-box.green {
-        background: rgba(0, 255, 136, 0.1);
-        border-left-color: #00ff88;
+    .example-bad {
+        border-left: 3px solid #ff6b6b;
+        margin-bottom: 10px;
     }
 
-    .highlight-text {
+    .example-good {
+        border-left: 3px solid #4ade80;
+    }
+
+    .example-label {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 5px;
+        color: #888;
+    }
+
+    .example-bad .example-label {
+        color: #ff6b6b;
+    }
+
+    .example-good .example-label {
+        color: #4ade80;
+    }
+
+    .example-text {
         color: #e0e0e0;
+        font-style: italic;
         font-size: 0.9rem;
-        line-height: 1.5;
     }
 
     .link-btn {
         display: inline-flex;
         align-items: center;
         gap: 8px;
-        background: linear-gradient(135deg, #00d9ff, #00ff88);
-        color: #0f0f1a;
+        background: linear-gradient(135deg, #ff6b6b, #feca57);
+        color: #1a1a2e;
         text-decoration: none;
         padding: 12px 20px;
         border-radius: 8px;
@@ -302,42 +318,7 @@
 
     .link-btn:hover {
         transform: translateY(-2px);
-        box-shadow: 0 5px 20px rgba(0, 217, 255, 0.4);
-    }
-
-    .related-section {
-        margin-top: 40px;
-        padding: 20px;
-        background: rgba(255,255,255,0.03);
-        border: 1px solid rgba(255,255,255,0.1);
-        border-radius: 12px;
-        text-align: center;
-    }
-
-    .related-section h3 {
-        font-size: 1rem;
-        color: #888;
-        margin-bottom: 15px;
-    }
-
-    .related-link {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        background: rgba(255, 107, 107, 0.1);
-        border: 1px solid rgba(255, 107, 107, 0.3);
-        color: #ff6b6b;
-        text-decoration: none;
-        padding: 15px 25px;
-        border-radius: 10px;
-        font-weight: 500;
-        transition: all 0.3s;
-    }
-
-    .related-link:hover {
-        background: rgba(255, 107, 107, 0.2);
-        border-color: #ff6b6b;
-        transform: translateY(-2px);
+        box-shadow: 0 5px 20px rgba(255,107,107,0.4);
     }
 
     footer {
@@ -348,7 +329,7 @@
     }
 
     footer a {
-        color: #00d9ff;
+        color: #ff6b6b;
         text-decoration: none;
     }
 
@@ -363,29 +344,30 @@
 <body>
     <div class="container">
         <header>
-            <h1>🚀 AI Revolution StudyBuddy</h1>
-            <p>What's actually happening with AI right now (Jan 2026)</p>
+            <h1>🧠 Claude Prompting StudyBuddy</h1>
+            <p>10 techniques to get better results from Claude AI</p>
         </header>
 
 ```
     <div class="video-container">
         <iframe 
-            src="https://www.youtube.com/embed/N8I2wYXt4m8" 
-            title="AI Revolution - Wes Roth"
+            src="https://www.youtube.com/embed/Xob-2a1OnvA" 
+            title="10 Claude Prompting Tips"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
             allowfullscreen>
         </iframe>
     </div>
 
     <div class="tips-header">
-        <span class="tip-count">9 Concepts</span>
+        <h2>Key Takeaways</h2>
+        <span class="tip-count">10 Tips</span>
     </div>
 
     <div class="tips-list">
         <div class="tip-item" onclick="openPopup(0)">
             <div class="tip-content">
                 <span class="tip-number">1</span>
-                <span class="tip-title">Crossing the Einstein Line</span>
+                <span class="tip-title">Tone of Collaboration</span>
             </div>
             <span class="info-btn">i</span>
         </div>
@@ -393,7 +375,7 @@
         <div class="tip-item" onclick="openPopup(1)">
             <div class="tip-content">
                 <span class="tip-number">2</span>
-                <span class="tip-title">The Erdős Problems</span>
+                <span class="tip-title">Be Explicit</span>
             </div>
             <span class="info-btn">i</span>
         </div>
@@ -401,7 +383,7 @@
         <div class="tip-item" onclick="openPopup(2)">
             <div class="tip-content">
                 <span class="tip-number">3</span>
-                <span class="tip-title">Terence Tao Confirmed It</span>
+                <span class="tip-title">Define the Boundaries</span>
             </div>
             <span class="info-btn">i</span>
         </div>
@@ -409,7 +391,7 @@
         <div class="tip-item" onclick="openPopup(3)">
             <div class="tip-content">
                 <span class="tip-number">4</span>
-                <span class="tip-title">GPT 5.2 Pro is the Breakthrough</span>
+                <span class="tip-title">Draft, Plan, Then Act</span>
             </div>
             <span class="info-btn">i</span>
         </div>
@@ -417,7 +399,7 @@
         <div class="tip-item" onclick="openPopup(4)">
             <div class="tip-content">
                 <span class="tip-number">5</span>
-                <span class="tip-title">This Didn't Exist 3 Months Ago</span>
+                <span class="tip-title">Demand Structured Output</span>
             </div>
             <span class="info-btn">i</span>
         </div>
@@ -425,7 +407,7 @@
         <div class="tip-item" onclick="openPopup(5)">
             <div class="tip-content">
                 <span class="tip-number">6</span>
-                <span class="tip-title">AI Can Be Cloned Infinitely</span>
+                <span class="tip-title">Explain the Why</span>
             </div>
             <span class="info-btn">i</span>
         </div>
@@ -433,7 +415,7 @@
         <div class="tip-item" onclick="openPopup(6)">
             <div class="tip-content">
                 <span class="tip-number">7</span>
-                <span class="tip-title">The "Quants" Changed Everything</span>
+                <span class="tip-title">Control Brevity vs Detail</span>
             </div>
             <span class="info-btn">i</span>
         </div>
@@ -441,7 +423,7 @@
         <div class="tip-item" onclick="openPopup(7)">
             <div class="tip-content">
                 <span class="tip-number">8</span>
-                <span class="tip-title">Every Industry Gets Disrupted</span>
+                <span class="tip-title">Provide a Scaffold</span>
             </div>
             <span class="info-btn">i</span>
         </div>
@@ -449,123 +431,159 @@
         <div class="tip-item" onclick="openPopup(8)">
             <div class="tip-content">
                 <span class="tip-number">9</span>
-                <span class="tip-title">We're at the Inflection Point</span>
+                <span class="tip-title">Speak the Language</span>
+            </div>
+            <span class="info-btn">i</span>
+        </div>
+
+        <div class="tip-item" onclick="openPopup(9)">
+            <div class="tip-content">
+                <span class="tip-number">10</span>
+                <span class="tip-title">Divide and Conquer</span>
             </div>
             <span class="info-btn">i</span>
         </div>
     </div>
 
-    <div class="related-section">
-        <h3>📚 Continue Learning</h3>
-        <a href="claude-prompting-study-buddy.html" class="related-link">
-            🧠 Learn How to Use Claude Better →
+    <div class="related-section" style="margin-top: 40px; padding: 20px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; text-align: center;">
+        <h3 style="font-size: 1rem; color: #888; margin-bottom: 15px;">📚 Continue Learning</h3>
+        <a href="ai-revolution-study-buddy.html" style="display: inline-flex; align-items: center; gap: 10px; background: rgba(0, 217, 255, 0.1); border: 1px solid rgba(0, 217, 255, 0.3); color: #00d9ff; text-decoration: none; padding: 15px 25px; border-radius: 10px; font-weight: 500; transition: all 0.3s;">
+            🚀 What's Actually Happening with AI →
         </a>
     </div>
 
     <footer>
         <p>Built with 💡 by <a href="#">iTabs StudyBuddy</a></p>
-        <p class="credit">Video by Wes Roth</p>
+        <p class="credit">Video by Greg Isenberg</p>
     </footer>
 </div>
 
+<!-- Popup Overlay -->
 <div class="popup-overlay" id="popupOverlay" onclick="closePopup(event)">
     <div class="popup" onclick="event.stopPropagation()">
         <div class="popup-header">
-            <span class="tip-num" id="popupTipNum">Concept 1 of 9</span>
+            <span class="tip-num" id="popupTipNum">Tip 1 of 10</span>
             <h3 id="popupTitle">Title</h3>
             <button class="close-btn" onclick="closePopup()">&times;</button>
         </div>
-        <div class="popup-body" id="popupBody"></div>
+        <div class="popup-body" id="popupBody">
+            <!-- Content injected by JS -->
+        </div>
     </div>
 </div>
 
 <script>
-    const concepts = [
+    const tips = [
         {
-            title: "Crossing the Einstein Line",
-            explanation: "AI capability is moving from 'average human' intelligence toward 'genius-level' intelligence. We're witnessing the transition from AI being 'cute' and 'adorable' to genuinely surprising and powerful.",
-            keyPoint: "We're currently watching AI's ability cross from 'that's cute' to 'WTF' territory.",
-            realWorld: "This isn't hype - it's verified by the world's top mathematicians who are seeing AI solve problems they couldn't.",
-            link: "https://mathstodon.xyz/@tao",
-            linkText: "Terence Tao's Mastodon"
-        },
-        {
-            title: "The Erdős Problems",
-            explanation: "Paul Erdős was a legendary mathematician who created a collection of unsolved problems - 1,135 of them. He described these as 'acorns from which mighty oaks can develop.' These are genuinely hard problems that the world's best mathematicians haven't cracked for decades.",
-            keyPoint: "About 40% have been solved by humans over many years. AI just started solving more in the last few DAYS.",
-            realWorld: "Problem #728 and #397 were both solved by AI in January 2026. These had stumped humans for 50+ years.",
-            link: "https://github.com/teorth/erdos",
-            linkText: "Erdős Problems Tracker"
-        },
-        {
-            title: "Terence Tao Confirmed It",
-            explanation: "Terence Tao is considered the 'Mozart of mathematics' - possibly the greatest living mathematician. He was teaching kids to count at age 2, taking university math at 9, and won the International Mathematical Olympiad gold medal at 13 (still the youngest ever).",
-            keyPoint: "Tao confirmed AI solved Erdős problem #728 'more or less autonomously' with genuine new methods - not copied from existing solutions.",
-            realWorld: "This isn't some random claim. The most credible person in mathematics is saying this is real.",
-            link: "https://mathstodon.xyz/@tao",
-            linkText: "Read Tao's Full Post"
-        },
-        {
-            title: "GPT 5.2 Pro is the Breakthrough",
-            explanation: "OpenAI's GPT 5.2 Pro (released December 11, 2025) is the specific model driving most of these mathematical breakthroughs. It's the first model capable of making real dents in unsolved math problems.",
-            keyPoint: "Most solutions on Terence Tao's tracker came from GPT 5.2 Pro specifically - not Claude, not Gemini, not older GPT versions.",
-            realWorld: "Neil Somi (quantitative researcher at Citadel) used GPT 5.2 Pro to solve problem #397 over a weekend. It was accepted by Terence Tao.",
-            link: "https://openai.com",
-            linkText: "OpenAI"
-        },
-        {
-            title: "This Didn't Exist 3 Months Ago",
-            explanation: "Looking at the dates on Terence Tao's GitHub tracker, almost all AI-generated solutions are from late November 2025, December 2025, or January 2026. This capability is brand new.",
-            keyPoint: "We went from 'AI solving math problems? That's crazy talk' to 'Of course AI solves math problems' in just weeks.",
-            realWorld: "Just a few weeks ago, someone claiming an LLM solved a major math problem was accused of 'LLM psychosis.' Now it's confirmed fact.",
-            link: "https://github.com/teorth/erdos",
-            linkText: "See the Timeline"
-        },
-        {
-            title: "AI Can Be Cloned Infinitely",
-            explanation: "Even if AI is only EQUAL to the world's best mathematicians (not better), there's a crucial difference: you can run a million copies of AI simultaneously. It works 24/7 without fatigue. It can read every paper ever written.",
-            keyPoint: "One breakthrough model = unlimited copies running forever, reading everything, never sleeping.",
-            realWorld: "GPT 5.2 Pro is one model. Make a million copies. Run them all. That's more math capability than all human mathematicians combined.",
-            link: null,
-            linkText: null
-        },
-        {
-            title: "The 'Quants' Changed Everything",
-            explanation: "Before the 1970s, trading was gut feeling and intuition. Then 'quants' (quantitative analysts) brought math and algorithms. They completely transformed finance. The same happened to logistics, agriculture, politics, dating, and advertising.",
-            keyPoint: "When math enters an industry, that industry gets disrupted. The people with math win. The people without it lose.",
-            realWorld: "Delivery companies discovered you should never turn left (if driving on right side). That came from math, not human intuition.",
-            link: null,
-            linkText: null
-        },
-        {
-            title: "Every Industry Gets Disrupted",
-            explanation: "If AI can do math at genius level, it will 'quant' every remaining industry. Medicine: personalized treatments. Legal: finding high-reward lawsuits automatically. Infrastructure: optimizing every design of every component.",
-            keyPoint: "What if every single thing humans design could be 10-15% better? Every mask, steering wheel, building, energy grid?",
-            realWorld: "We don't have enough human brainpower to deeply optimize every tiny design decision. AI might make that cheap and fast.",
-            link: null,
-            linkText: null
-        },
-        {
-            title: "We're at the Inflection Point",
-            explanation: "The graph shows AI capability shooting upward, crossing from below-human to above-human intelligence in specific domains. We're not waiting for this to happen - it's happening right now.",
-            keyPoint: "Don't sleep on this. This is the moment the curve goes vertical.",
-            realWorld: "You have access to these same AI tools. The question is whether you learn to use them before or after everyone else does.",
+            title: "Tone of Collaboration",
+            explanation: "Treat Claude like a teammate, not a servant. A friendly, clear, and firm tone gets better results than being demanding or overly passive. Being mean leads to defensive, less helpful responses.",
+            badExample: "Fix this grammar NOW.",
+            goodExample: "Please review the following text for grammatical errors and suggest corrections. My goal is to make it sound more professional and confident.",
             link: "https://claude.ai",
-            linkText: "Try Claude AI"
+            linkText: "Try it on Claude"
+        },
+        {
+            title: "Be Explicit",
+            explanation: "State your request as a clear, action-oriented command with all necessary details. Use an action verb, specify quantity, and define your target audience. Vague requests get generic AI slop.",
+            badExample: "I need a bunch of blog post ideas.",
+            goodExample: "Generate 10 blog post titles about the impact of remote work on urban planning. The titles should be engaging for an audience of city officials and real estate developers.",
+            link: "https://claude.ai",
+            linkText: "Try it on Claude"
+        },
+        {
+            title: "Define the Boundaries",
+            explanation: "A well-defined box produces more creative results than an empty field. Add constraints on length, style, character, setting, and even specific words to avoid. Infinite possibilities lead to cliché output.",
+            badExample: "Write a short story about a detective in the future.",
+            goodExample: "Write a short story, no more than 500 words, in the style of Raymond Chandler. The story must feature a robot detective investigating a data theft on Mars. Do not use the word 'cyber'.",
+            link: "https://claude.ai",
+            linkText: "Try it on Claude"
+        },
+        {
+            title: "Draft, Plan, Then Act",
+            explanation: "Don't try to get a perfect final product in one prompt. Ask for an outline first, refine it together, then execute. This lets you course-correct early and actually saves time in the long run.",
+            badExample: "Write me a report on the benefits of a 4-day work week.",
+            goodExample: "Step 1: First propose an outline for this report. Step 2: That's a good start. In section two, add a subpoint about employee retention. Step 3: Now write the full report based on this revised outline.",
+            link: "https://claude.ai",
+            linkText: "Try it on Claude"
+        },
+        {
+            title: "Demand Structured Output",
+            explanation: "Claude can output in many formats beyond plain paragraphs. Request markdown tables, bullet points, JSON, or any specific structure you need. Structured output is easier to use and parse.",
+            badExample: "List Apollo missions and some facts about them.",
+            goodExample: "Provide a list of the last three Apollo missions (15, 16, and 17). For each mission, include: launch date, crew members, and a key achievement. Present this in a markdown formatted table.",
+            link: "https://docs.anthropic.com",
+            linkText: "Read Anthropic Docs"
+        },
+        {
+            title: "Explain the Why",
+            explanation: "Telling Claude WHY you need something helps it understand your true intent. Include your brand values, target audience, and unique selling proposition. Context creates relevance.",
+            badExample: "Give me five marketing slogans for a new brand of coffee.",
+            goodExample: "Give me five marketing slogans for a new brand of coffee. Our beans are ethically sourced from small independent farms. Our target audience is environmentally conscious millennials. The slogans should reflect quality and sustainability.",
+            link: "https://claude.ai",
+            linkText: "Try it on Claude"
+        },
+        {
+            title: "Control Brevity vs Detail",
+            explanation: "You control the output length. Use phrases like 'be concise', 'use bullet points', 'explain like I'm 5', or 'think step by step for a college student'. Match the detail level to your actual needs.",
+            badExample: "Explain photosynthesis.",
+            goodExample: "Expert version: 'Explain photosynthesis in detail for a college biology student. Think step by step.' OR Brief version: 'Explain photosynthesis. Be concise and use bullet points.' OR Simple: 'Explain photosynthesis like I'm 5.'",
+            link: "https://claude.ai",
+            linkText: "Try it on Claude"
+        },
+        {
+            title: "Provide a Scaffold",
+            explanation: "Give Claude a template or example to guide its structure and style. This ensures the output is formatted exactly as you need it, not just accurate but usable.",
+            badExample: "Summarize this article.",
+            goodExample: "Summarize the following article using this format: Main thesis: [one sentence]. Key supporting points: [three bullet points]. Concluding insight: [one sentence]. Then paste your text.",
+            link: "https://claude.ai",
+            linkText: "Try it on Claude"
+        },
+        {
+            title: "Speak the Language",
+            explanation: "Using advanced prompting terms triggers sophisticated modes. These are cheat codes that Anthropic recommends: 'Think step by step' for complex problems, 'Critique your own response' for self-correction, 'Adopt the persona of an expert in [field]' for domain-specific depth.",
+            badExample: "Help me with this math problem.",
+            goodExample: "Think step by step to solve this problem. After your answer, critique your own response and check for errors.",
+            link: "https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering",
+            linkText: "Anthropic Prompting Guide"
+        },
+        {
+            title: "Divide and Conquer",
+            explanation: "For complex tasks, act as the conductor. Don't ask for a 10-page report in one prompt. Break it into logical subtasks: blueprint first, then section by section, then synthesize and check for consistency.",
+            badExample: "Build me a business plan for a coffee shop.",
+            goodExample: "Step 1: Create a detailed table of contents for a business plan for a specialty coffee shop. Step 2: Write the executive summary. Step 3: Write the market analysis. ... Final step: Review the complete plan and ensure consistent tone.",
+            link: "https://claude.ai",
+            linkText: "Try it on Claude"
         }
     ];
 
     function openPopup(index) {
-        const concept = concepts[index];
-        document.getElementById('popupTipNum').textContent = 'Concept ' + (index + 1) + ' of 9';
-        document.getElementById('popupTitle').textContent = concept.title;
+        const tip = tips[index];
+        document.getElementById('popupTipNum').textContent = `Tip ${index + 1} of 10`;
+        document.getElementById('popupTitle').textContent = tip.title;
         
-        let linkHtml = '';
-        if (concept.link) {
-            linkHtml = '<div class="popup-section"><h4>🔗 Learn More</h4><a href="' + concept.link + '" target="_blank" class="link-btn">' + concept.linkText + ' →</a></div>';
-        }
-        
-        document.getElementById('popupBody').innerHTML = '<div class="popup-section"><h4>💡 What\'s Happening</h4><p>' + concept.explanation + '</p></div><div class="popup-section"><h4>🎯 Key Point</h4><div class="highlight-box"><div class="highlight-text">' + concept.keyPoint + '</div></div></div><div class="popup-section"><h4>🌍 Real World</h4><div class="highlight-box green"><div class="highlight-text">' + concept.realWorld + '</div></div></div>' + linkHtml;
+        document.getElementById('popupBody').innerHTML = `
+            <div class="popup-section">
+                <h4>💡 What It Means</h4>
+                <p>${tip.explanation}</p>
+            </div>
+            <div class="popup-section">
+                <h4>📝 Example</h4>
+                <div class="example-box example-bad">
+                    <div class="example-label">❌ Vague Request</div>
+                    <div class="example-text">"${tip.badExample}"</div>
+                </div>
+                <div class="example-box example-good">
+                    <div class="example-label">✅ Architected Brief</div>
+                    <div class="example-text">"${tip.goodExample}"</div>
+                </div>
+            </div>
+            <div class="popup-section">
+                <h4>🚀 Try It</h4>
+                <a href="${tip.link}" target="_blank" class="link-btn">
+                    ${tip.linkText} →
+                </a>
+            </div>
+        `;
         
         document.getElementById('popupOverlay').classList.add('active');
         document.body.style.overflow = 'hidden';
@@ -578,7 +596,8 @@
         }
     }
 
-    document.addEventListener('keydown', function(e) {
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') closePopup();
     });
 </script>
