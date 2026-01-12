@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>AI Revolution StudyBuddy</title>
     <style>
         * {
@@ -13,10 +13,17 @@
         }
 
 ```
+    html {
+        background: #0f0f1a;
+    }
+
     body {
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-        background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 50%, #16213e 100%);
+        background: #0f0f1a;
+        background-image: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 50%, #16213e 100%);
+        background-attachment: fixed;
         min-height: 100vh;
+        min-height: -webkit-fill-available;
         color: #fff;
     }
 
@@ -24,6 +31,7 @@
         max-width: 800px;
         margin: 0 auto;
         padding: 20px;
+        background: transparent;
     }
 
     header {
@@ -67,13 +75,9 @@
     .tips-header {
         display: flex;
         align-items: center;
+        justify-content: center;
         gap: 10px;
         margin-bottom: 20px;
-    }
-
-    .tips-header h2 {
-        font-size: 1.3rem;
-        color: #fff;
     }
 
     .tip-count {
@@ -155,7 +159,6 @@
         color: #0f0f1a;
     }
 
-    /* Popup Overlay */
     .popup-overlay {
         display: none;
         position: fixed;
@@ -276,18 +279,6 @@
         border-left-color: #00ff88;
     }
 
-    .highlight-label {
-        font-size: 0.75rem;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        margin-bottom: 5px;
-        color: #00d9ff;
-    }
-
-    .highlight-box.green .highlight-label {
-        color: #00ff88;
-    }
-
     .highlight-text {
         color: #e0e0e0;
         font-size: 0.9rem;
@@ -387,7 +378,6 @@
     </div>
 
     <div class="tips-header">
-        <h2>Key Takeaways</h2>
         <span class="tip-count">9 Concepts</span>
     </div>
 
@@ -478,7 +468,6 @@
     </footer>
 </div>
 
-<!-- Popup Overlay -->
 <div class="popup-overlay" id="popupOverlay" onclick="closePopup(event)">
     <div class="popup" onclick="event.stopPropagation()">
         <div class="popup-header">
@@ -486,9 +475,7 @@
             <h3 id="popupTitle">Title</h3>
             <button class="close-btn" onclick="closePopup()">&times;</button>
         </div>
-        <div class="popup-body" id="popupBody">
-            <!-- Content injected by JS -->
-        </div>
+        <div class="popup-body" id="popupBody"></div>
     </div>
 </div>
 
@@ -496,7 +483,7 @@
     const concepts = [
         {
             title: "Crossing the Einstein Line",
-            explanation: "AI capability is moving from 'average human' intelligence toward 'genius-level' intelligence. We're witnessing the transition from AI being 'cute' and 'adorable' to genuinely surprising and powerful. The graph shows AI crossing the line where Einstein sits.",
+            explanation: "AI capability is moving from 'average human' intelligence toward 'genius-level' intelligence. We're witnessing the transition from AI being 'cute' and 'adorable' to genuinely surprising and powerful.",
             keyPoint: "We're currently watching AI's ability cross from 'that's cute' to 'WTF' territory.",
             realWorld: "This isn't hype - it's verified by the world's top mathematicians who are seeing AI solve problems they couldn't.",
             link: "https://mathstodon.xyz/@tao",
@@ -512,7 +499,7 @@
         },
         {
             title: "Terence Tao Confirmed It",
-            explanation: "Terence Tao is considered the 'Mozart of mathematics' - possibly the greatest living mathematician. He was teaching kids to count at age 2, taking university math at 9, and won the International Mathematical Olympiad gold medal at 13 (still the youngest ever). When he says something is legit, it's legit.",
+            explanation: "Terence Tao is considered the 'Mozart of mathematics' - possibly the greatest living mathematician. He was teaching kids to count at age 2, taking university math at 9, and won the International Mathematical Olympiad gold medal at 13 (still the youngest ever).",
             keyPoint: "Tao confirmed AI solved Erdős problem #728 'more or less autonomously' with genuine new methods - not copied from existing solutions.",
             realWorld: "This isn't some random claim. The most credible person in mathematics is saying this is real.",
             link: "https://mathstodon.xyz/@tao",
@@ -536,7 +523,7 @@
         },
         {
             title: "AI Can Be Cloned Infinitely",
-            explanation: "Even if AI is only EQUAL to the world's best mathematicians (not better), there's a crucial difference: you can run a million copies of AI simultaneously. It works 24/7 without fatigue. It can read every paper ever written. You can't Ctrl+V a human genius.",
+            explanation: "Even if AI is only EQUAL to the world's best mathematicians (not better), there's a crucial difference: you can run a million copies of AI simultaneously. It works 24/7 without fatigue. It can read every paper ever written.",
             keyPoint: "One breakthrough model = unlimited copies running forever, reading everything, never sleeping.",
             realWorld: "GPT 5.2 Pro is one model. Make a million copies. Run them all. That's more math capability than all human mathematicians combined.",
             link: null,
@@ -544,7 +531,7 @@
         },
         {
             title: "The 'Quants' Changed Everything",
-            explanation: "Before the 1970s, trading was gut feeling and intuition. Then 'quants' (quantitative analysts) brought math and algorithms. They completely transformed finance. The same happened to logistics (optimal delivery routes), agriculture (precision farming), politics (campaign optimization), dating (algorithms), and advertising (split testing).",
+            explanation: "Before the 1970s, trading was gut feeling and intuition. Then 'quants' (quantitative analysts) brought math and algorithms. They completely transformed finance. The same happened to logistics, agriculture, politics, dating, and advertising.",
             keyPoint: "When math enters an industry, that industry gets disrupted. The people with math win. The people without it lose.",
             realWorld: "Delivery companies discovered you should never turn left (if driving on right side). That came from math, not human intuition.",
             link: null,
@@ -552,7 +539,7 @@
         },
         {
             title: "Every Industry Gets Disrupted",
-            explanation: "If AI can do math at genius level, it will 'quant' every remaining industry. Medicine: personalized treatments based on your unique genome and bloodwork. Legal: finding high-reward, low-risk lawsuits automatically. Infrastructure: optimizing every design of every component.",
+            explanation: "If AI can do math at genius level, it will 'quant' every remaining industry. Medicine: personalized treatments. Legal: finding high-reward lawsuits automatically. Infrastructure: optimizing every design of every component.",
             keyPoint: "What if every single thing humans design could be 10-15% better? Every mask, steering wheel, building, energy grid?",
             realWorld: "We don't have enough human brainpower to deeply optimize every tiny design decision. AI might make that cheap and fast.",
             link: null,
@@ -560,7 +547,7 @@
         },
         {
             title: "We're at the Inflection Point",
-            explanation: "The graph shows AI capability shooting upward, crossing from below-human to above-human intelligence in specific domains. We're not waiting for this to happen - it's happening right now, in the last few months of 2025 and early 2026.",
+            explanation: "The graph shows AI capability shooting upward, crossing from below-human to above-human intelligence in specific domains. We're not waiting for this to happen - it's happening right now.",
             keyPoint: "Don't sleep on this. This is the moment the curve goes vertical.",
             realWorld: "You have access to these same AI tools. The question is whether you learn to use them before or after everyone else does.",
             link: "https://claude.ai",
@@ -570,40 +557,15 @@
 
     function openPopup(index) {
         const concept = concepts[index];
-        document.getElementById('popupTipNum').textContent = `Concept ${index + 1} of 9`;
+        document.getElementById('popupTipNum').textContent = 'Concept ' + (index + 1) + ' of 9';
         document.getElementById('popupTitle').textContent = concept.title;
         
         let linkHtml = '';
         if (concept.link) {
-            linkHtml = `
-                <div class="popup-section">
-                    <h4>🔗 Learn More</h4>
-                    <a href="${concept.link}" target="_blank" class="link-btn">
-                        ${concept.linkText} →
-                    </a>
-                </div>
-            `;
+            linkHtml = '<div class="popup-section"><h4>🔗 Learn More</h4><a href="' + concept.link + '" target="_blank" class="link-btn">' + concept.linkText + ' →</a></div>';
         }
         
-        document.getElementById('popupBody').innerHTML = `
-            <div class="popup-section">
-                <h4>💡 What's Happening</h4>
-                <p>${concept.explanation}</p>
-            </div>
-            <div class="popup-section">
-                <h4>🎯 Key Point</h4>
-                <div class="highlight-box">
-                    <div class="highlight-text">${concept.keyPoint}</div>
-                </div>
-            </div>
-            <div class="popup-section">
-                <h4>🌍 Real World</h4>
-                <div class="highlight-box green">
-                    <div class="highlight-text">${concept.realWorld}</div>
-                </div>
-            </div>
-            ${linkHtml}
-        `;
+        document.getElementById('popupBody').innerHTML = '<div class="popup-section"><h4>💡 What\'s Happening</h4><p>' + concept.explanation + '</p></div><div class="popup-section"><h4>🎯 Key Point</h4><div class="highlight-box"><div class="highlight-text">' + concept.keyPoint + '</div></div></div><div class="popup-section"><h4>🌍 Real World</h4><div class="highlight-box green"><div class="highlight-text">' + concept.realWorld + '</div></div></div>' + linkHtml;
         
         document.getElementById('popupOverlay').classList.add('active');
         document.body.style.overflow = 'hidden';
@@ -616,8 +578,7 @@
         }
     }
 
-    // Close on Escape key
-    document.addEventListener('keydown', (e) => {
+    document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') closePopup();
     });
 </script>
